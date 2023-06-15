@@ -13,12 +13,12 @@ router.get('/catalog', async (req, res) => {
 });
 
 router.get('/:cryptoId/details', async (req, res) => {
-    
+
     const crypto = await cryptoService.getOne(req.params.cryptoId);
 
-    
-    
-    res.render('crypto/details', {crypto});
+    const isOwner = crypto.owner == req.user?._id   // ако това е собственика на крипто вземи му ID, ако не е върни undefined 
+
+    res.render('crypto/details', { crypto, isOwner });
 })
 
 
