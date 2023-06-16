@@ -22,6 +22,11 @@ router.get('/:cryptoId/details', async (req, res) => {
 })
 
 
+router.get('/:cryptoId/buy', isAuthorized, async (req, res) => {
+    await cryptoService.buy(req.user._id, req.params.cryptoId)
+})
+
+
 router.get('/create', isAuthorized, (req, res) => {
     res.render('crypto/create')
 });
